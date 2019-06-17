@@ -43,33 +43,34 @@ export function event() {
 
 
                 const url = "https://api.github.com/orgs/nodejs";
+                // const url = "http://13.209.89.105:18181/trans";
+                // const url = "http://70.50.34.231:10801/tranlate";
 
                 try {
+                    if(e.target.textContent != null || e.target.textContent != '' || e.target.textContent.length > 0)
+                    {
+                        // alert(e.target.textContent )
+                        fetch(url, {
+                            method: "post",
+                            headers: {
+                                "Accept": "application/json, text/plain, */*",
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({
+                                id: 1,
+                                src: e.target.textContent,
+                                translate_type: "enko",
+                                document_type: "test",
+                                test_req: "False",
+                            })
 
-
-                    fetch(url, {
-                        method: "post",
-                        headers: {
-                            "Accept": "application/json, text/plain, */*",
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            id: 1,
-                            src: e.target.textContent,
-                            translate_type: "enko",
-                            document_type: "test",
-                            test_req: "False",
                         })
-                    })
                         .then(response => response.json())
                         .then(data => {
-                            // Prints result from \`response.json()\` in getRequest
-                            // alert(data.login)
-                            // e.target.textContent = e.target.textContent +  "\\n"  + data.message;
-                            e.target.textContent = data.message;
+                                e.target.textContent = data.message;
 
                         })
-
+                    }
                 } catch (e) {
                     alert(e);
                 }
@@ -77,7 +78,7 @@ export function event() {
                 // alert(e.target.textContent);
                 longpress = true;
                 void (0);
-            }, 130);
+            }, 500);
         }
 
         void (0);

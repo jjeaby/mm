@@ -10,4 +10,7 @@ web-build/
 web-report/
 .idea
 .code
-
+package-lock.json
+yarn.lock
+.expo-shared
+.expo
